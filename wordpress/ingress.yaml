@@ -1,0 +1,17 @@
+kind: Ingress
+metadata:
+  name: melita-test-ingress
+  annotations:
+    nkubernetes.io/ingress.class: "nginx"
+    cert-manager.io/issuer: "letsencrypt-staging"
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        backend:
+          serviceName: wordpress-external
+          servicePort: 80
+  tls:
+  - hosts:
+    secretName: melita-secret-word
